@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryan Prisco | Mortgage & Lending Expert</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F7F5E8;
+  --cream-dark: #EDE9D5;
+  --navy: #1d2f42;
+  --teal: #6c9ea8;
+  --teal-light: #e8f2f4;
+  --lime: #B1DF56;
+  --white: #ffffff;
+  --black: #111111;
+  --text: #3a3a3a;
+  --text-light: #6b6b6b;
+  --border: #1d2f42;
+  --radius: 8px;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper / noise texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ---- ANIMATED BACKGROUND BLOBS ---- */
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0;
+  animation: blobEbb 12s ease-in-out infinite;
+}
+
+.bg-blob-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--teal);
+  top: -10%;
+  right: -5%;
+  opacity: 0.06;
+  animation: blobEbb1 14s ease-in-out infinite;
+}
+
+.bg-blob-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--lime);
+  bottom: 10%;
+  left: -8%;
+  opacity: 0.04;
+  animation: blobEbb2 18s ease-in-out infinite;
+}
+
+.bg-blob-3 {
+  width: 400px;
+  height: 400px;
+  background: var(--teal);
+  top: 40%;
+  right: 20%;
+  opacity: 0.03;
+  animation: blobEbb3 16s ease-in-out infinite;
+}
+
+@keyframes blobEbb1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.06;
+  }
+  33% {
+    transform: translate(-40px, 30px) scale(1.1);
+    opacity: 0.08;
+  }
+  66% {
+    transform: translate(20px, -20px) scale(0.95);
+    opacity: 0.04;
+  }
+}
+
+@keyframes blobEbb2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.04;
+  }
+  40% {
+    transform: translate(50px, -30px) scale(1.15);
+    opacity: 0.06;
+  }
+  70% {
+    transform: translate(-20px, 20px) scale(0.9);
+    opacity: 0.03;
+  }
+}
+
+@keyframes blobEbb3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.03;
+  }
+  50% {
+    transform: translate(-30px, 40px) scale(1.2);
+    opacity: 0.05;
+  }
+}
+
+/* ---- UTILITIES ---- */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.section-subtitle {
+  font-size: 17px;
+  color: var(--text-light);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ---- NAVIGATION ---- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: rgba(247, 245, 232, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+
+.nav.scrolled {
+  box-shadow: 0 2px 20px rgba(29, 47, 66, 0.08);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.nav-brand {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav-brand span {
+  color: var(--teal);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--teal);
+}
+
+.nav-cta {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+  padding: 10px 24px;
+  border-radius: var(--radius);
+  transition: background 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--teal) !important;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* ---- HERO ---- */
+.hero {
+  padding-top: 68px;
+  background: var(--cream);
+  border-bottom: 2px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle diagonal lines texture in hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  opacity: 0.03;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--navy),
+    var(--navy) 1px,
+    transparent 1px,
+    transparent 20px
+  );
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: min(85vh, 700px);
+  gap: 40px;
+}
+
+.hero-content {
+  padding: 40px 0;
+  max-width: 480px;
+}
+
+.hero-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: var(--teal);
+}
+
+.hero-name {
+  font-size: clamp(44px, 6vw, 72px);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.0;
+  margin-bottom: 24px;
+  letter-spacing: -2px;
+}
+
+.hero-tagline {
+  font-size: 19px;
+  color: var(--text-light);
+  line-height: 1.65;
+  margin-bottom: 36px;
+  max-width: 420px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+.btn-primary:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.btn-outline:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.hero-image {
+  position: relative;
+  align-self: end;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+/* ---- PHOTO BREAK (parallax image bands) ---- */
+.photo-break {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  border-bottom: 2px solid var(--border);
+  z-index: 1;
+}
+
+.photo-break-bg {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+.photo-break-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(29,47,66,0.7) 0%, rgba(108,158,168,0.4) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.photo-break-text {
+  text-align: center;
+  color: var(--white);
+  padding: 24px;
+}
+
+.photo-break-text h3 {
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.photo-break-text p {
+  font-size: 17px;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+/* ---- ABOUT ---- */
+.about {
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+  z-index: 1;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-image {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 2px solid var(--border);
+  position: relative;
+}
+
+.about-image img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.about-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--teal);
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+.about-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.about-stat {
+  text-align: center;
+}
+
+.about-stat .number {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+  display: block;
+}
+
+.about-stat .label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-light);
+  margin-top: 6px;
+  display: block;
+}
+
+/* ---- SERVICES ---- */
+.services {
+  background: var(--cream);
+  border-bottom: 2px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  background-image: radial-gradient(var(--navy) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 56px;
+  position: relative;
+}
+
+.services-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.service-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(29, 47, 66, 0.1);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.service-card:nth-child(1)::before { background: var(--teal); }
+.service-card:nth-child(2)::before { background: var(--navy); }
+.service-card:nth-child(3)::before { background: var(--lime); }
+
+.service-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+.service-card:nth-child(1) .service-icon { background: var(--teal-light); }
+.service-card:nth-child(2) .service-icon { background: #e8edf2; }
+.service-card:nth-child(3) .service-icon { background: #f0f8e0; }
+
+.service-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-size: 15px;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.service-link {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--teal);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s;
+}
+
+.service-link:hover {
+  gap: 10px;
+}
+
+/* ---- EXPERTISE ---- */
+.expertise {
+  background: var(--navy);
+  border-bottom: 2px solid var(--black);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.expertise::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.expertise .section-label {
+  color: var(--lime);
+}
+
+.expertise .section-title {
+  color: var(--white);
+}
+
+.expertise .section-subtitle {
+  color: rgba(255,255,255,0.6);
+}
+
+.expertise-header {
+  text-align: center;
+  margin-bottom: 56px;
+  position: relative;
+}
+
+.expertise-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.expertise-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.expertise-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.expertise-item:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateX(4px);
+}
+
+.expertise-check {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--lime);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.expertise-check svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--navy);
+  stroke-width: 3;
+  fill: none;
+}
+
+.expertise-item span {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+/* ---- BLOG ---- */
+.blog {
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+  z-index: 1;
+}
+
+.blog-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.blog-embed {
+  min-height: 400px;
+  border: 2px dashed rgba(29, 47, 66, 0.2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  padding: 40px;
+}
+
+.blog-embed-placeholder {
+  text-align: center;
+  color: var(--text-light);
+}
+
+.blog-embed-placeholder p {
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.blog-embed-placeholder code {
+  display: block;
+  margin-top: 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--navy);
+}
+
+/* ---- CTA ---- */
+.cta {
+  background: var(--cream);
+  border-bottom: 2px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: var(--teal);
+  opacity: 0.1;
+}
+
+.cta-box::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--lime);
+  opacity: 0.08;
+}
+
+.cta-box > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box .section-label {
+  color: var(--lime);
+}
+
+.cta-box .section-title {
+  color: var(--white);
+  max-width: 600px;
+  margin: 0 auto 16px;
+}
+
+.cta-box .section-subtitle {
+  color: rgba(255,255,255,0.6);
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-lime {
+  background: var(--lime);
+  color: var(--navy);
+  border-color: var(--lime);
+  font-weight: 800;
+}
+
+.btn-lime:hover {
+  background: #c4e872;
+  border-color: #c4e872;
+}
+
+.btn-outline-white {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.btn-outline-white:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* ---- FOOTER ---- */
+.footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 48px 0;
+  border-top: 3px solid var(--lime);
+  z-index: 1;
+  position: relative;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+
+.footer-brand span {
+  color: var(--teal);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+}
+
+.footer-copy {
+  width: 100%;
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+}
+
+/* ---- MOBILE ---- */
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-content {
+    padding: 40px 0 24px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-eyebrow {
+    justify-content: center;
+  }
+
+  .hero-tagline {
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-image {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise-list {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-box {
+    padding: 48px 24px;
+  }
+
+  .photo-break {
+    height: 220px;
+  }
+
+  .about-stats {
+    justify-content: center;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--cream);
+    flex-direction: column;
+    padding: 24px;
+    border-bottom: 2px solid var(--border);
+    gap: 20px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 56px 0;
+  }
+
+  .hero-name {
+    font-size: 40px;
+    letter-spacing: -1px;
+  }
+
+  .blog-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+
+  .about-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .photo-break {
+    height: 180px;
+  }
+}
+
+/* ---- ENTRANCE ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpPhoto {
+  from { opacity: 0; transform: translateY(48px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero load sequence */
+.hero-eyebrow {
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.1s;
+}
+.hero-name {
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.22s;
+}
+.hero-tagline {
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.38s;
+}
+.hero-buttons {
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.52s;
+}
+.hero-image {
+  animation: slideUpPhoto 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.28s;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- Animated background blobs -->
+<div class="bg-animation">
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+</div>
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-brand">RYAN <span>PRISCO</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Mortgage & Lending Expert</p>
+      <h1 class="hero-name">Ryan<br>Prisco</h1>
+      <p class="hero-tagline">Helping you navigate every stage of the lending journey — from your first home to reverse mortgages and commercial ventures.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+        <a href="#services" class="btn btn-outline">Explore Services &rarr;</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <!-- Standing transparent PNG -->
+      <img src="https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b4bbd017707ec8986a9be.png" alt="Ryan Prisco">
+    </div>
+  </div>
+</section>
+
+<!-- ========== PHOTO BREAK 1 (parallax) ========== -->
+<div class="photo-break" data-parallax>
+  <div class="photo-break-bg" style="background-image: url('https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b75fa0708e4cea308c802.jpg')"></div>
+  <div class="photo-break-overlay">
+    <div class="photo-break-text">
+      <h3>Your Lending Partner for Life</h3>
+      <p>Residential &bull; Commercial &bull; Reverse Mortgages</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<section class="about section" id="about">
+  <div class="container about-grid">
+    <div class="about-image reveal">
+      <!-- Headshot -->
+      <img src="https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b534a67d7491cdf54304a.png" alt="Ryan Prisco">
+    </div>
+    <div class="about-text reveal" style="transition-delay:0.12s">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Meet Ryan Prisco</h2>
+      <p>Ryan Prisco is a seasoned mortgage professional with deep expertise across residential lending, commercial finance, and reverse mortgages. As a key member of <strong>The Katalyst Team</strong> and founder of <strong>RP Commercial Capital</strong>, Ryan brings a comprehensive approach to every client relationship.</p>
+      <p>Whether you're a first-time buyer, a seasoned investor, or a homeowner looking to unlock your home's equity through a reverse mortgage, Ryan's goal is simple: find the right solution for your unique financial picture and make the process as smooth as possible.</p>
+      <div class="about-stats">
+        <div class="about-stat">
+          <span class="number">15+</span>
+          <span class="label">Years Experience</span>
+        </div>
+        <div class="about-stat">
+          <span class="number">500+</span>
+          <span class="label">Loans Closed</span>
+        </div>
+        <div class="about-stat">
+          <span class="number">3</span>
+          <span class="label">Lending Verticals</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services section" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <p class="section-label">What I Do</p>
+      <h2 class="section-title">Lending Solutions for Every Need</h2>
+      <p class="section-subtitle">From residential purchases to complex commercial deals, I provide personalized guidance at every step.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal" style="transition-delay:0.05s">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6c9ea8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Residential Lending</h3>
+        <p>Conventional, FHA, VA, USDA, and jumbo loans — I'll match you with the right program and guide you from pre-approval to closing.</p>
+        <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="service-link">The Katalyst Team &rarr;</a>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:0.15s">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d2f42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="16" rx="2"/><path d="M1 10h22"/><path d="M8 6V2h8v4"/></svg>
+        </div>
+        <h3>Commercial Lending</h3>
+        <p>Investment properties, multi-family, mixed-use, and business financing through RP Commercial Capital. Let's build your portfolio.</p>
+        <a href="rp-commercial.html" class="service-link">RP Commercial Capital &rarr;</a>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:0.25s">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ab532" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12l7-7 7 7"/><line x1="2" y1="22" x2="22" y2="22"/></svg>
+        </div>
+        <h3>Reverse Mortgages</h3>
+        <p>Unlock your home's equity without monthly mortgage payments. I specialize in HECM and proprietary reverse mortgage solutions for homeowners 62+.</p>
+        <a href="#contact" class="service-link">Learn More &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== PHOTO BREAK 2 (parallax) ========== -->
+<div class="photo-break" data-parallax>
+  <div class="photo-break-bg" style="background-image: url('https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b75fa52c952e47fc0ba0a.jpg')"></div>
+  <div class="photo-break-overlay">
+    <div class="photo-break-text">
+      <h3>From First Homes to Forever Homes</h3>
+      <p>Expert guidance through every chapter of homeownership</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== EXPERTISE ========== -->
+<section class="expertise section" id="expertise">
+  <div class="container">
+    <div class="expertise-header reveal">
+      <p class="section-label">Areas of Expertise</p>
+      <h2 class="section-title">The Full Lending Spectrum</h2>
+      <p class="section-subtitle">Years of experience across every major loan type means you get the right advice — not a one-size-fits-all answer.</p>
+    </div>
+    <div class="expertise-list">
+      <div class="expertise-item reveal" style="transition-delay:0.05s">
+        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Conventional & Jumbo Loans</span>
+      </div>
+      <div class="expertise-item reveal" style="transition-delay:0.1s">
+        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>FHA, VA & USDA Programs</span>
+      </div>
+      <div class="expertise-item reveal" style="transition-delay:0.15s">
+        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Reverse Mortgages (HECM)</span>
+      </div>
+      <div class="expertise-item reveal" style="transition-delay:0.2s">
+        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Investment Property Financing</span>
+      </div>
+      <div class="expertise-item reveal" style="transition-delay:0.25s">
+        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Commercial & Multi-Family</span>
+      </div>
+      <div class="expertise-item reveal" style="transition-delay:0.3s">
+        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Refinance & Cash-Out</span>
+      </div>
+      <div class="expertise-item reveal" style="transition-delay:0.35s">
+        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>First-Time Buyer Programs</span>
+      </div>
+      <div class="expertise-item reveal" style="transition-delay:0.4s">
+        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Construction & Renovation Loans</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BLOG ========== -->
+<section class="blog section" id="blog">
+  <div class="container">
+    <div class="blog-header">
+      <div>
+        <p class="section-label">Insights</p>
+        <h2 class="section-title">From the Blog</h2>
+        <p class="section-subtitle">Tips, market updates, and lending insights to keep you informed.</p>
+      </div>
+    </div>
+    <div class="blog-embed">
+      <!--
+        =============================================
+        GHL BLOG EMBED
+        Replace this entire <div class="blog-embed">
+        with your GHL blog embed code.
+        =============================================
+      -->
+      <div class="blog-embed-placeholder">
+        <strong>GHL Blog Embed Goes Here</strong>
+        <p>Replace this placeholder with your GHL blog embed snippet.</p>
+        <code>&lt;div data-ghl-blog="YOUR_BLOG_ID"&gt;&lt;/div&gt;</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PHOTO BREAK 3 (parallax) ========== -->
+<div class="photo-break" data-parallax>
+  <div class="photo-break-bg" style="background-image: url('https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b75fa0708e47b0508c801.jpg')"></div>
+  <div class="photo-break-overlay">
+    <div class="photo-break-text">
+      <h3>Building Your Financial Future</h3>
+      <p>One smart lending decision at a time</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CTA ========== -->
+<section class="cta section" id="contact">
+  <div class="container">
+    <div class="cta-box reveal">
+      <p class="section-label">Let's Talk</p>
+      <h2 class="section-title">Ready to Make Your Next Move?</h2>
+      <p class="section-subtitle">Whether you're buying, refinancing, or exploring a reverse mortgage — I'm here to help you find the right path forward.</p>
+      <div class="cta-buttons">
+        <!-- REPLACE: Link to your Google Calendar booking page -->
+        <a href="#contact" class="btn btn-lime">Book a Consultation</a>
+        <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="btn btn-outline-white">Visit The Katalyst Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">RYAN <span>PRISCO</span></div>
+    <ul class="footer-links">
+      <li><a href="https://ryanprisco.thekatalystteam.com" target="_blank">The Katalyst Team</a></li>
+      <li><a href="#contact">RP Commercial Capital</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 Ryan Prisco. All rights reserved. NMLS# [YOUR_NMLS_NUMBER]</p>
+  </div>
+</footer>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+// Mobile nav toggle
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// Nav shadow on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Scroll reveal
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => observer.observe(el));
+})();
+
+// Parallax effect on photo break sections
+(function() {
+  const parallaxSections = document.querySelectorAll('[data-parallax]');
+  if (!parallaxSections.length) return;
+
+  // Disable parallax on mobile / touch for performance
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  if (isMobile) return;
+
+  let ticking = false;
+
+  function updateParallax() {
+    const scrollY = window.pageYOffset;
+
+    parallaxSections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + scrollY;
+      const sectionHeight = section.offsetHeight;
+
+      // Only animate when section is near viewport
+      if (scrollY + window.innerHeight > sectionTop && scrollY < sectionTop + sectionHeight) {
+        const bg = section.querySelector('.photo-break-bg');
+        if (bg) {
+          // Calculate parallax offset: image moves slower than scroll
+          const progress = (scrollY + window.innerHeight - sectionTop) / (window.innerHeight + sectionHeight);
+          const offset = (progress - 0.5) * 300; // +-150px range
+          bg.style.transform = 'translate3d(0, ' + offset + 'px, 0)';
+        }
+      }
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Initial call
+  updateParallax();
+})();
+</script>
+
+</body>
+</html>
