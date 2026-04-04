@@ -573,9 +573,11 @@ body::after {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
   position: relative;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .service-card {
@@ -604,8 +606,23 @@ body::after {
 }
 
 .service-card:nth-child(1)::before { background: var(--teal); }
-.service-card:nth-child(2)::before { background: var(--navy); }
-.service-card:nth-child(3)::before { background: var(--lime); }
+.service-card:nth-child(2)::before { background: var(--lime); }
+
+.specialty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0f8e0;
+  border: 1px solid #c8e87a;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #5a7a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 16px;
+}
 
 .service-icon {
   width: 52px;
@@ -619,8 +636,7 @@ body::after {
 }
 
 .service-card:nth-child(1) .service-icon { background: var(--teal-light); }
-.service-card:nth-child(2) .service-icon { background: #e8edf2; }
-.service-card:nth-child(3) .service-icon { background: #f0f8e0; }
+.service-card:nth-child(2) .service-icon { background: #f0f8e0; }
 
 .service-card h3 {
   font-size: 20px;
@@ -700,13 +716,30 @@ body::after {
   margin: 0 auto;
 }
 
-.expertise-list {
+.expertise-columns {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
   max-width: 900px;
   margin: 0 auto;
   position: relative;
+}
+
+.expertise-col-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.expertise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .expertise-item {
@@ -1106,10 +1139,12 @@ body::after {
 
   .services-grid {
     grid-template-columns: 1fr;
+    max-width: 100%;
   }
 
-  .expertise-list {
+  .expertise-columns {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .cta-box {
@@ -1250,10 +1285,10 @@ body::after {
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#services">Home Loans</a></li>
+      <li><a href="#services">Commercial</a></li>
       <li><a href="#blog">Blog</a></li>
-      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+      <li><a href="#contact" class="nav-cta">Book a Call</a></li>
     </ul>
   </div>
 </nav>
@@ -1264,7 +1299,7 @@ body::after {
     <div class="hero-content">
       <p class="hero-eyebrow">Mortgage & Lending Expert</p>
       <h1 class="hero-name">Ryan<br>Prisco</h1>
-      <p class="hero-tagline">Helping you navigate every stage of the lending journey — from your first home to reverse mortgages and commercial ventures.</p>
+      <p class="hero-tagline">Whether it's a home loan or a commercial deal — you get real expertise and a straight answer, every time.</p>
       <div class="hero-buttons">
         <a href="#contact" class="btn btn-primary">Book a Consultation</a>
         <a href="#services" class="btn btn-outline">Explore Services &rarr;</a>
@@ -1282,8 +1317,8 @@ body::after {
   <div class="photo-break-bg" style="background-image: url('https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b75fa0708e4cea308c802.jpg')"></div>
   <div class="photo-break-overlay">
     <div class="photo-break-text">
-      <h3>Your Lending Partner for Life</h3>
-      <p>Residential &bull; Commercial &bull; Reverse Mortgages</p>
+      <h3>Home Loans & Commercial Deals</h3>
+      <p>One expert. Both sides of the table.</p>
     </div>
   </div>
 </div>
@@ -1322,9 +1357,9 @@ body::after {
 <section class="services section" id="services">
   <div class="container">
     <div class="services-header reveal">
-      <p class="section-label">What I Do</p>
-      <h2 class="section-title">Lending Solutions for Every Need</h2>
-      <p class="section-subtitle">From residential purchases to complex commercial deals, I provide personalized guidance at every step.</p>
+      <p class="section-label">Two Paths. One Expert.</p>
+      <h2 class="section-title">How Can I Help You?</h2>
+      <p class="section-subtitle">Whether you're buying a home or building a portfolio — here's where you start.</p>
     </div>
     <div class="services-grid">
 
@@ -1332,27 +1367,22 @@ body::after {
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6c9ea8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h3>Residential Lending</h3>
-        <p>Conventional, FHA, VA, USDA, and jumbo loans — I'll match you with the right program and guide you from pre-approval to closing.</p>
+        <h3>Home Lending</h3>
+        <p>Conventional, FHA, VA, USDA, and jumbo loans — from pre-approval to closing. As a member of The Katalyst Team, I have access to a wide range of programs to fit your situation.</p>
+        <div class="specialty-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22V8"/><path d="M5 12l7-7 7 7"/></svg>
+          HECM Specialist — Reverse Mortgages for 62+
+        </div>
         <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="service-link">The Katalyst Team &rarr;</a>
       </div>
 
       <div class="service-card reveal" style="transition-delay:0.15s">
         <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d2f42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="16" rx="2"/><path d="M1 10h22"/><path d="M8 6V2h8v4"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ab532" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><path d="M8 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/></svg>
         </div>
         <h3>Commercial Lending</h3>
-        <p>Investment properties, multi-family, mixed-use, and business financing through RP Commercial Capital. Let's build your portfolio.</p>
+        <p>Investment properties, multi-family, mixed-use, and business financing through RP Commercial Capital. Whether you're acquiring, refinancing, or scaling — let's build the right deal structure.</p>
         <a href="rp-commercial.html" class="service-link">RP Commercial Capital &rarr;</a>
-      </div>
-
-      <div class="service-card reveal" style="transition-delay:0.25s">
-        <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ab532" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12l7-7 7 7"/><line x1="2" y1="22" x2="22" y2="22"/></svg>
-        </div>
-        <h3>Reverse Mortgages</h3>
-        <p>Unlock your home's equity without monthly mortgage payments. I specialize in HECM and proprietary reverse mortgage solutions for homeowners 62+.</p>
-        <a href="#contact" class="service-link">Learn More &rarr;</a>
       </div>
 
     </div>
@@ -1364,8 +1394,8 @@ body::after {
   <div class="photo-break-bg" style="background-image: url('https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b75fa52c952e47fc0ba0a.jpg')"></div>
   <div class="photo-break-overlay">
     <div class="photo-break-text">
-      <h3>From First Homes to Forever Homes</h3>
-      <p>Expert guidance through every chapter of homeownership</p>
+      <h3>15+ Years. 500+ Deals Closed.</h3>
+      <p>The experience to know which loan actually fits your situation.</p>
     </div>
   </div>
 </div>
@@ -1375,41 +1405,67 @@ body::after {
   <div class="container">
     <div class="expertise-header reveal">
       <p class="section-label">Areas of Expertise</p>
-      <h2 class="section-title">The Full Lending Spectrum</h2>
-      <p class="section-subtitle">Years of experience across every major loan type means you get the right advice — not a one-size-fits-all answer.</p>
+      <h2 class="section-title">Covered on Both Sides</h2>
+      <p class="section-subtitle">15+ years across residential and commercial means you get the right answer — not just the most common one.</p>
     </div>
-    <div class="expertise-list">
-      <div class="expertise-item reveal" style="transition-delay:0.05s">
-        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>Conventional & Jumbo Loans</span>
+    <div class="expertise-columns">
+      <div>
+        <p class="expertise-col-label">Home Lending</p>
+        <div class="expertise-list">
+          <div class="expertise-item reveal" style="transition-delay:0.05s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Conventional & Jumbo Loans</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.1s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>FHA, VA & USDA Programs</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.15s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Reverse Mortgages (HECM)</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.2s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>First-Time Buyer Programs</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.25s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Refinance & Cash-Out</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.3s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Construction & Renovation Loans</span>
+          </div>
+        </div>
       </div>
-      <div class="expertise-item reveal" style="transition-delay:0.1s">
-        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>FHA, VA & USDA Programs</span>
-      </div>
-      <div class="expertise-item reveal" style="transition-delay:0.15s">
-        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>Reverse Mortgages (HECM)</span>
-      </div>
-      <div class="expertise-item reveal" style="transition-delay:0.2s">
-        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>Investment Property Financing</span>
-      </div>
-      <div class="expertise-item reveal" style="transition-delay:0.25s">
-        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>Commercial & Multi-Family</span>
-      </div>
-      <div class="expertise-item reveal" style="transition-delay:0.3s">
-        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>Refinance & Cash-Out</span>
-      </div>
-      <div class="expertise-item reveal" style="transition-delay:0.35s">
-        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>First-Time Buyer Programs</span>
-      </div>
-      <div class="expertise-item reveal" style="transition-delay:0.4s">
-        <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>Construction & Renovation Loans</span>
+      <div>
+        <p class="expertise-col-label">Commercial</p>
+        <div class="expertise-list">
+          <div class="expertise-item reveal" style="transition-delay:0.05s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Investment Property Financing</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.1s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Multi-Family & Mixed-Use</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.15s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Bridge & Hard Money Loans</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.2s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>SBA & Business Financing</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.25s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Portfolio & Blanket Loans</span>
+          </div>
+          <div class="expertise-item reveal" style="transition-delay:0.3s">
+            <div class="expertise-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Commercial Refinance & Cash-Out</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1478,8 +1534,8 @@ body::after {
   <div class="photo-break-bg" style="background-image: url('https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b75fa0708e47b0508c801.jpg')"></div>
   <div class="photo-break-overlay">
     <div class="photo-break-text">
-      <h3>Building Your Financial Future</h3>
-      <p>One smart lending decision at a time</p>
+      <h3>Not Sure Which Path Is Right?</h3>
+      <p>Book a call — 15 minutes and we'll figure it out together.</p>
     </div>
   </div>
 </div>
@@ -1489,12 +1545,13 @@ body::after {
   <div class="container">
     <div class="cta-box reveal">
       <p class="section-label">Let's Talk</p>
-      <h2 class="section-title">Ready to Make Your Next Move?</h2>
-      <p class="section-subtitle">Whether you're buying, refinancing, or exploring a reverse mortgage — I'm here to help you find the right path forward.</p>
+      <h2 class="section-title">Ready to Get Started?</h2>
+      <p class="section-subtitle">Pick a path or book a call — 15 minutes is usually all it takes to know exactly what you need.</p>
       <div class="cta-buttons">
         <!-- REPLACE: Link to your Google Calendar booking page -->
-        <a href="#contact" class="btn btn-lime">Book a Consultation</a>
-        <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="btn btn-outline-white">Visit The Katalyst Team</a>
+        <a href="#contact" class="btn btn-lime">Book a Call</a>
+        <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="btn btn-outline-white">Home Loans &rarr;</a>
+        <a href="rp-commercial.html" class="btn btn-outline-white">Commercial &rarr;</a>
       </div>
     </div>
   </div>
