@@ -307,7 +307,7 @@ body {
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--navy-mid);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -315,10 +315,13 @@ body {
 }
 .section-eyebrow::before {
   content: '';
-  width: 24px; height: 1px;
+  width: 24px; height: 2px;
   background: var(--gold);
-  opacity: 0.6;
 }
+
+/* Gold eyebrow on dark backgrounds */
+.about .section-eyebrow,
+.contact .section-eyebrow { color: var(--gold); }
 
 .section-title {
   font-family: 'Noto Serif', serif;
@@ -377,7 +380,7 @@ body {
   font-weight: 700;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--navy-mid);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -385,7 +388,7 @@ body {
 }
 .service-card-tag::before {
   content: '';
-  width: 16px; height: 1px;
+  width: 16px; height: 2px;
   background: var(--gold);
 }
 
@@ -502,7 +505,6 @@ body {
 .step-number {
   width: 56px; height: 56px;
   border-radius: 50%;
-  background: var(--navy);
   border: 2px solid var(--gold);
   display: flex;
   align-items: center;
@@ -511,7 +513,7 @@ body {
   font-family: 'Noto Serif', serif;
   font-size: 18px;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--navy);
   position: relative;
   z-index: 1;
   background: var(--surface);
@@ -869,7 +871,7 @@ body {
       </div>
 
       <div class="service-card reveal" style="transition-delay:0.19s">
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=700&h=440&fit=crop&q=80" alt="Equity Solutions" class="service-card-img">
+        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=700&h=440&fit=crop&q=80" alt="Equity Solutions" class="service-card-img">
         <div class="service-card-body">
           <p class="service-card-tag">Capital Stack</p>
           <h3>Equity & Mezzanine Debt</h3>
