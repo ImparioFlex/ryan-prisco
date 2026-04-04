@@ -608,21 +608,6 @@ body::after {
 .service-card:nth-child(1)::before { background: var(--teal); }
 .service-card:nth-child(2)::before { background: var(--lime); }
 
-.specialty-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #f0f8e0;
-  border: 1px solid #c8e87a;
-  border-radius: 20px;
-  padding: 5px 12px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #5a7a1a;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 16px;
-}
 
 .service-icon {
   width: 52px;
@@ -781,6 +766,112 @@ body::after {
   font-size: 16px;
   font-weight: 600;
   color: var(--white);
+}
+
+/* ---- REVERSE MORTGAGE ---- */
+.reverse {
+  background: var(--navy);
+  border-bottom: 2px solid var(--black);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.reverse::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.04;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.reverse .section-label { color: var(--lime); }
+.reverse .section-title { color: var(--white); }
+
+.reverse-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+}
+
+.reverse-content p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.reverse-content p:last-of-type { margin-bottom: 32px; }
+
+.reverse-facts {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 40px;
+}
+
+.reverse-facts-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 24px;
+}
+
+.reverse-fact {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.reverse-fact:last-child { margin-bottom: 0; }
+
+.reverse-fact-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(177, 223, 86, 0.15);
+  border: 1px solid rgba(177, 223, 86, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.reverse-fact-icon svg {
+  width: 14px; height: 14px;
+  stroke: var(--lime);
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.reverse-fact-text strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+
+.reverse-fact-text span {
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .reverse-grid { grid-template-columns: 1fr; gap: 40px; }
 }
 
 /* ---- BLOG ---- */
@@ -1369,11 +1460,8 @@ body::after {
         </div>
         <h3>Home Lending</h3>
         <p>Conventional, FHA, VA, USDA, and jumbo loans — from pre-approval to closing. As a member of The Katalyst Team, I have access to a wide range of programs to fit your situation.</p>
-        <div class="specialty-badge">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22V8"/><path d="M5 12l7-7 7 7"/></svg>
-          HECM Specialist — Reverse Mortgages for 62+
-        </div>
-        <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="service-link">The Katalyst Team &rarr;</a>
+        <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="service-link" style="margin-bottom:10px;display:inline-flex">The Katalyst Team &rarr;</a><br>
+        <a href="#reverse" class="service-link" style="color:var(--navy);font-size:13px">HECM Reverse Mortgages &darr;</a>
       </div>
 
       <div class="service-card reveal" style="transition-delay:0.15s">
@@ -1385,6 +1473,56 @@ body::after {
         <a href="rp-commercial.html" class="service-link">RP Commercial Capital &rarr;</a>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ========== REVERSE MORTGAGE ========== -->
+<section class="reverse section" id="reverse">
+  <div class="container">
+    <div class="reverse-grid">
+      <div class="reverse-content reveal">
+        <p class="section-label">For Homeowners 62+</p>
+        <h2 class="section-title">Reverse Mortgages,<br>Done Right</h2>
+        <p>Most people have heard the horror stories. Very few have had it explained by someone who actually specializes in it. A reverse mortgage isn't right for everyone — but for the right homeowner, it's one of the most powerful financial tools available.</p>
+        <p>As a certified HECM specialist, I'll give you the full picture: how it works, what the real risks are, and whether it actually makes sense for your situation. No pressure. No runaround.</p>
+        <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="btn btn-lime">Talk to Ryan at The Katalyst Team</a>
+      </div>
+      <div class="reverse-facts reveal" style="transition-delay:0.15s">
+        <p class="reverse-facts-title">What You Should Know</p>
+
+        <div class="reverse-fact">
+          <div class="reverse-fact-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="reverse-fact-text">
+            <strong>No required monthly mortgage payments</strong>
+            <span>The loan balance is repaid when you sell, move out, or pass away — not before.</span>
+          </div>
+        </div>
+
+        <div class="reverse-fact">
+          <div class="reverse-fact-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="reverse-fact-text">
+            <strong>You keep the title to your home</strong>
+            <span>It's a loan against your equity — you're not selling your home or giving it to the bank.</span>
+          </div>
+        </div>
+
+        <div class="reverse-fact">
+          <div class="reverse-fact-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="reverse-fact-text">
+            <strong>Proceeds are tax-free</strong>
+            <span>Reverse mortgage funds are considered loan advances, not income — no income tax on what you receive.</span>
+          </div>
+        </div>
+
+        <div class="reverse-fact">
+          <div class="reverse-fact-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="reverse-fact-text">
+            <strong>Must be 62+, primary residence only</strong>
+            <span>Available for homeowners with significant equity. Taxes, insurance, and maintenance are still required.</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
