@@ -142,11 +142,8 @@ body {
   background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80&fit=crop');
   background-size: cover;
   background-position: center;
-  transform: scale(1.04);
-  transition: transform 8s ease-out;
+  transform: scale(1);
 }
-
-.hero-bg.loaded { transform: scale(1); }
 
 .hero-overlay {
   position: absolute;
@@ -175,7 +172,7 @@ body {
   color: var(--gold);
   margin-bottom: 24px;
   opacity: 0;
-  animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.2s both;
+  animation: fadeUp 0.35s cubic-bezier(0.22,1,0.36,1) 0.05s both;
 }
 .hero-eyebrow::before {
   content: '';
@@ -192,7 +189,7 @@ body {
   letter-spacing: -1.5px;
   margin-bottom: 28px;
   opacity: 0;
-  animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.32s both;
+  animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) 0.12s both;
 }
 
 .hero-title em {
@@ -207,7 +204,7 @@ body {
   max-width: 520px;
   margin-bottom: 40px;
   opacity: 0;
-  animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.46s both;
+  animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) 0.2s both;
 }
 
 .hero-buttons {
@@ -215,7 +212,7 @@ body {
   gap: 14px;
   flex-wrap: wrap;
   opacity: 0;
-  animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.58s both;
+  animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) 0.28s both;
 }
 
 .btn {
@@ -259,7 +256,7 @@ body {
   backdrop-filter: blur(8px);
   border-top: 1px solid rgba(255,255,255,0.08);
   opacity: 0;
-  animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.72s both;
+  animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) 0.36s both;
 }
 
 .hero-stats-inner {
@@ -741,15 +738,14 @@ body {
 
 /* ---- SCROLL REVEAL ---- */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
-              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+  transform: translateY(10px);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 

@@ -1,17 +1,3 @@
 {
-  "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "rpcommercialcapital.com" }],
-      "destination": "/rp-commercial",
-      "permanent": false
-    },
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "www.rpcommercialcapital.com" }],
-      "destination": "/rp-commercial",
-      "permanent": false
-    }
-  ]
+  "cleanUrls": true
 }
