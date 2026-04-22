@@ -4,12 +4,12 @@
     {
       "source": "/",
       "has": [{ "type": "host", "value": "rpcommercialcapital.com" }],
-      "destination": "/rp-commercial.html"
+      "destination": "/rp-commercial"
     },
     {
       "source": "/",
       "has": [{ "type": "host", "value": "www.rpcommercialcapital.com" }],
-      "destination": "/rp-commercial.html"
+      "destination": "/rp-commercial"
     }
   ]
 }
