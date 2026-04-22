@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ryan Prisco | Mortgage & Lending Expert</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="image" href="/images/ryan-hero.png" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1398,14 +1399,14 @@ body::after {
     </div>
     <div class="hero-image">
       <!-- Standing transparent PNG -->
-      <img src="https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b4bbd017707ec8986a9be.png" alt="Ryan Prisco">
+      <img src="/images/ryan-hero.png" alt="Ryan Prisco" fetchpriority="high" loading="eager" decoding="async">
     </div>
   </div>
 </section>
 
 <!-- ========== PHOTO BREAK 1 (parallax) ========== -->
 <div class="photo-break" data-parallax>
-  <div class="photo-break-bg" style="background-image: url('https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b75fa0708e4cea308c802.jpg')"></div>
+  <div class="photo-break-bg" style="background-image: url('/images/photo-break.jpg')"></div>
   <div class="photo-break-overlay">
     <div class="photo-break-text">
       <h3>Residential Lending & Commercial Lending</h3>
@@ -1419,7 +1420,7 @@ body::after {
   <div class="container about-grid">
     <div class="about-image reveal">
       <!-- Headshot -->
-      <img src="https://assets.cdn.filesafe.space/yaVwY401QAzbrpIRvjeq/media/698b534a67d7491cdf54304a.png" alt="Ryan Prisco">
+      <img src="/images/ryan-about.png" alt="Ryan Prisco" loading="lazy" decoding="async">
     </div>
     <div class="about-text reveal" style="transition-delay:0.12s">
       <p class="section-label">About</p>
@@ -1470,7 +1471,7 @@ body::after {
         </div>
         <h3>Commercial Lending</h3>
         <p>Investment properties, multi-family, mixed-use, and business financing through RP Commercial Capital. Whether you're acquiring, refinancing, or scaling — let's build the right deal structure.</p>
-        <a href="rp-commercial.html" class="service-link">RP Commercial Capital &rarr;</a>
+        <a href="https://rpcommercialcapital.com" class="service-link">RP Commercial Capital &rarr;</a>
       </div>
 
     </div>
@@ -1689,7 +1690,7 @@ body::after {
         <!-- REPLACE: Link to your Google Calendar booking page -->
         <a href="#contact" class="btn btn-lime">Book a Call</a>
         <a href="https://ryanprisco.thekatalystteam.com" target="_blank" class="btn btn-outline-white">Residential Lending &rarr;</a>
-        <a href="rp-commercial.html" class="btn btn-outline-white">Commercial Lending &rarr;</a>
+        <a href="https://rpcommercialcapital.com" class="btn btn-outline-white">Commercial Lending &rarr;</a>
       </div>
     </div>
   </div>
@@ -1760,7 +1761,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const heroImgContainer = document.querySelector('.hero-image');
   if (!heroImgEl || !heroImgContainer) return;
   function revealHeroImg() {
-    setTimeout(() => heroImgContainer.classList.add('img-ready'), 280);
+    heroImgContainer.classList.add('img-ready');
   }
   if (heroImgEl.complete && heroImgEl.naturalHeight !== 0) {
     revealHeroImg();
