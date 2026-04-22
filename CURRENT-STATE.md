@@ -4,46 +4,58 @@
 
 - name: Ryan Prisco Personal Website + RP Commercial Capital
 - app root: `/Users/trevor/Projects/CLAUDE/Ryan Prisco/`
-- live URL: https://ryan-prisco.vercel.app
-- commercial: https://ryan-prisco.vercel.app/rp-commercial.html
+- live URLs:
+  - https://ryanprisco.com (personal hub)
+  - https://rpcommercialcapital.com (commercial lending)
 - GitHub: ImparioFlex/ryan-prisco (auto-deploys on push to main)
+- Vercel projects (ImparioFlex team):
+  - `ryan-prisco` — serves root `index.html` → ryanprisco.com
+  - `rp-commercial-capital` — rootDirectory=`commercial`, serves `commercial/index.html` → rpcommercialcapital.com
 
 ## Current Goal
 
-Get ryanprisco.com live as Ryan's personal hub, routing visitors to either The Katalyst Team (home loans) or RP Commercial Capital (commercial). Sent to Ryan for review 2026-04-05.
+Domains live. Awaiting Ryan on calendar link + form backend + blog decision.
 
-## What Was Last Completed
+## What Was Last Completed (2026-04-21 launch)
 
-- Built full personal site (index.html) — cream/navy/teal/lime palette, Manrope, parallax photo breaks
-- Two-path content structure: Home Loans → Katalyst Team, Commercial → RP Commercial Capital
-- Dedicated reverse mortgage section (navy, HECM specialist positioning)
-- Blog section with 3 dummy posts + Unsplash images
-- Compliance bar: NMLS# 987736, Company NMLS# 1533336, 10 licensed states, EHO logo, reverse mortgage disclaimer
-- Built rp-commercial.html — Stitch design direction (Noto Serif + Manrope, navy/gold, private equity aesthetic)
-- Commercial page: hero with stats bar, 4 service cards, Ryan about section, 4-step process, deal submission form
-- Entrance animations on both pages, scroll reveals
-- GitHub repo + Vercel deployed
+- Both domains DNS configured + live in Namecheap + Vercel, SSL provisioned
+- Email forwarding set up: `deals@rpcommercialcapital.com` → `rpcommcap@gmail.com` via Namecheap forwarder
+- Live mailto link + Ryan's phone `(626) 818-1919` wired into commercial contact section
+- Self-hosted all Ryan photos from `/images/` on Vercel edge (replaced slow GHL filesafe.space CDN)
+  - ryan-hero.png 1.9MB → 866KB
+  - photo-break.jpg 7.8MB → 369KB
+- Preloaded hero image with `fetchpriority=high`, removed 280ms artificial reveal delay
+- Tightened all entrance animations: 0.65–0.9s → 0.35–0.4s, translateY 22–48px → 10–16px
+- Removed JS scroll-based parallax (was causing scroll jank) — static bg instead
+- Split commercial into its own Vercel project (`rp-commercial-capital`, rootDir=`commercial`) so rpcommercialcapital.com serves at clean `/` URL
 
 ## What Is In Progress
 
-- Awaiting Ryan's review/approval before connecting domain
+- None — production state reached for initial launch
 
-## Needed From Ryan Before Launch
+## Needed From Ryan Before Fully Done
 
-- **ryanprisco.com DNS** — Trevor has domain in Namecheap. Point A record to `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com`, then add domain in Vercel settings
 - **Calendar/booking link** — Google Calendar booking URL for "Book a Call" buttons (both pages)
-- **Commercial email** — deals@rpcommercialcapital.com or whatever he wants
-- **Commercial phone number** — for RP Commercial Capital contact section
-- **Blog decision** — placeholder posts are live; needs to decide on blog platform (custom dashboard, GHL, or skip for now)
-- **Form backend** — deal submission form currently alerts on submit; needs Resend/Formspree/GHL wired up
+- **Form backend** — deal submission form on commercial currently alerts on submit; needs Resend/Formspree wired
+- **Blog decision** — 3 placeholder posts live; pick a blog platform or remove section
+- **Commercial contact phone for form** — currently only contact-section shows phone; may want phone field validation or Twilio lookup
 
-## Next 3 Priorities
+## Next 3 Priorities (after Ryan feedback)
 
-1. Connect ryanprisco.com domain once Ryan approves
-2. Wire up "Book a Call" links with real calendar URL
-3. Wire deal submission form to real endpoint
+1. Wire `Book a Call` buttons with real calendar URL (both sites)
+2. Wire commercial deal submission form to Resend
+3. Decide blog direction (platform or delete)
 
 ## Files Most Likely Involved Next
 
-- `index.html` — main personal site
-- `rp-commercial.html` — commercial capital landing page
+- `index.html` — personal site (ryanprisco.com)
+- `commercial/index.html` — commercial site (rpcommercialcapital.com)
+- `vercel.json` — project-level config (minimal; cleanUrls only)
+- `images/` (personal) and `commercial/images/` (commercial) — asset folders are separate per project
+
+## Architecture Notes
+
+- Two Vercel projects point at the **same GitHub repo** with different `rootDirectory` settings
+- `cleanUrls: true` in root vercel.json only (strips .html on personal site)
+- Image assets are duplicated per project — if updating Ryan's headshot, update both `/images/ryan-about.png` AND `/commercial/images/ryan-about.png`
+- **Host-based rewrites in Vercel rewrites do NOT fire on static deployments** (confirmed via testing). Use separate projects or redirects (not rewrites) for host routing.
