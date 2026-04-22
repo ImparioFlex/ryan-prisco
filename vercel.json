@@ -1,10 +1,14 @@
 {
-  "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/:path((?!rp-commercial|images|.*\\.).*)",
-      "has": [{ "type": "host", "value": "(?:www\\.)?rpcommercialcapital\\.com" }],
-      "destination": "/rp-commercial"
+      "source": "/",
+      "has": [{ "type": "host", "value": "rpcommercialcapital.com" }],
+      "destination": "/rp-commercial.html"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.rpcommercialcapital.com" }],
+      "destination": "/rp-commercial.html"
     }
   ]
 }
