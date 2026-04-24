@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { FormEvent } from "react";
 import CommercialScripts from "./CommercialScripts";
 
@@ -51,9 +50,9 @@ export default function CommercialPage() {
               <a href="#process">How It Works</a>
             </li>
             <li>
-              <Link href="/" className="nav-back">
+              <a href="https://ryanprisco.com" className="nav-back">
                 ← ryanprisco.com
-              </Link>
+              </a>
             </li>
             <li>
               <a href="#contact" className="nav-cta-link">
@@ -410,7 +409,7 @@ export default function CommercialPage() {
           </div>
           <ul className="footer-links">
             <li>
-              <Link href="/">← ryanprisco.com</Link>
+              <a href="https://ryanprisco.com">← ryanprisco.com</a>
             </li>
             <li>
               <a
