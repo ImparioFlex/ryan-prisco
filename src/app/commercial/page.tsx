@@ -3,20 +3,99 @@
 import { FormEvent } from "react";
 import CommercialScripts from "./CommercialScripts";
 
-const SERVICES = [
-  "Owner User (SBA 504 / SBA 7a)",
-  "Conventional Commercial Mortgage Products (Owner User / Investment)",
-  "Multi-Family 5+ Units",
-  "Warehouse / Industrial",
-  "Raw / Vacant Land",
-  "Office / Medical Office",
-  "Mixed Use",
-  "Commercial Lines of Credit",
-  "Commercial Private Money / Hard Money",
-  "Commercial Investor (No Income Verification / DSCR)",
-  "Commercial Construction",
-  "Bridge / Fix and Flip Project Loans",
-  "Business Financing",
+type ServiceItem = {
+  title: string;
+  blurb: string;
+};
+
+type ServiceCategory = {
+  number: string;
+  name: string;
+  tagline: string;
+  items: ServiceItem[];
+};
+
+const SERVICE_CATEGORIES: ServiceCategory[] = [
+  {
+    number: "01",
+    name: "Core Commercial",
+    tagline: "Institutional lending for owner-occupied and stabilized investment real estate.",
+    items: [
+      {
+        title: "SBA 504 / SBA 7(a)",
+        blurb: "Long-term, low-down financing for owner-occupied commercial real estate through the SBA.",
+      },
+      {
+        title: "Conventional Commercial Mortgages",
+        blurb: "Traditional structures for owner-user and investment properties with stable income.",
+      },
+      {
+        title: "Multi-Family (5+ Units)",
+        blurb: "Apartment and multifamily financing for acquisition, refinance, or cash-out.",
+      },
+      {
+        title: "Mixed Use",
+        blurb: "Retail-residential and hybrid properties structured around actual use and income mix.",
+      },
+    ],
+  },
+  {
+    number: "02",
+    name: "Specialty Assets",
+    tagline: "Specific property types that need a lender who understands the nuances.",
+    items: [
+      {
+        title: "Warehouse / Industrial",
+        blurb: "Logistics, manufacturing, and flex-industrial — single or multi-tenant.",
+      },
+      {
+        title: "Office / Medical Office",
+        blurb: "Traditional and medical office with an eye on tenant mix and lease rollover.",
+      },
+      {
+        title: "Raw / Vacant Land",
+        blurb: "Land acquisition, entitled lots, and pre-development financing.",
+      },
+      {
+        title: "Commercial Construction",
+        blurb: "Ground-up and major-rehab capital through completion and stabilization.",
+      },
+    ],
+  },
+  {
+    number: "03",
+    name: "Investor Capital",
+    tagline: "Flexible, faster-moving capital for active investors and operators.",
+    items: [
+      {
+        title: "DSCR / No Income Verification",
+        blurb: "Debt-service-based qualifying for investors who prefer not to document personal income.",
+      },
+      {
+        title: "Private Money / Hard Money",
+        blurb: "Fast-close, asset-backed capital when conventional timelines or criteria don't fit.",
+      },
+      {
+        title: "Bridge / Fix & Flip",
+        blurb: "Short-term capital for acquisitions, value-add plays, and interim bridge scenarios.",
+      },
+    ],
+  },
+  {
+    number: "04",
+    name: "Business Capital",
+    tagline: "Working capital and operational financing for commercial clients.",
+    items: [
+      {
+        title: "Commercial Lines of Credit",
+        blurb: "Revolving capital for working capital, payroll, and short-term business needs.",
+      },
+      {
+        title: "Business Financing",
+        blurb: "SBA 7(a), equipment, and working capital structured around your business profile.",
+      },
+    ],
+  },
 ];
 
 export default function CommercialPage() {
@@ -110,32 +189,52 @@ export default function CommercialPage() {
       </section>
 
       {/* SERVICES */}
-      <section className="services section" id="services">
+      <section className="services-v2 section" id="services">
         <div className="container">
           <div className="services-header reveal">
             <p className="section-eyebrow">What We Do</p>
-            <h2 className="section-title">Strategic Capital Solutions</h2>
+            <h2 className="section-title" style={{ color: "#fff" }}>
+              Strategic Capital Solutions
+            </h2>
             <p className="section-subtitle">
               From acquisition through exit, we structure the right financing for
               complex commercial real estate transactions.
             </p>
           </div>
-          <div
-            className="services-grid"
-            style={{ gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}
-          >
-            {SERVICES.map((s, i) => (
+          <div className="service-categories">
+            {SERVICE_CATEGORIES.map((cat, ci) => (
               <div
-                key={s}
-                className="service-card reveal"
-                style={{
-                  transitionDelay: `${0.03 + i * 0.03}s`,
-                  padding: "28px 24px",
-                  textAlign: "center",
-                }}
+                key={cat.number}
+                className="category-block reveal"
+                style={{ transitionDelay: `${ci * 0.08}s` }}
               >
-                <div className="service-card-body" style={{ padding: 0 }}>
-                  <h3 style={{ fontSize: 17 }}>{s}</h3>
+                <div className="category-header">
+                  <div className="category-number">{cat.number}</div>
+                  <div className="category-header-text">
+                    <h3 className="category-name">{cat.name}</h3>
+                    <p className="category-tagline">{cat.tagline}</p>
+                  </div>
+                </div>
+                <div
+                  className="category-items"
+                  style={{
+                    gridTemplateColumns:
+                      cat.items.length === 3
+                        ? "repeat(3, 1fr)"
+                        : "repeat(2, 1fr)",
+                  }}
+                >
+                  {cat.items.map((item, ii) => (
+                    <div
+                      key={item.title}
+                      className="service-item reveal"
+                      style={{ transitionDelay: `${ci * 0.08 + ii * 0.04}s` }}
+                    >
+                      <div className="service-item-mark" />
+                      <h4 className="service-item-title">{item.title}</h4>
+                      <p className="service-item-blurb">{item.blurb}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}

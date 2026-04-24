@@ -44,7 +44,7 @@ Live site is up. Awaiting Ryan's feedback on blog preview/CMS + form wiring.
 ## Admin Credentials (share with Ryan when ready)
 
 - URL: `https://ryanprisco.com/admin/login`
-- Password: `wyI4Qm0zFISKg3dZaV`
+- Password: `PriscoBlog2026`
 - To change password: update `ADMIN_PASSWORD` env var in Vercel + redeploy
 
 ## Needed From Ryan Before Fully Done
